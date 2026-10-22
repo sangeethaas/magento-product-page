@@ -1,0 +1,12 @@
+/vendor/
+/generated/
+/var/
+/pub/static/
+/pub/media/
+/app/etc/env.php
+/dev/
+/phpserver/
+.idea/
+.vscode/
+.DS_Store
+*.log
