@@ -1,0 +1,24 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$config = [
+    'productsUrl' => $block->getUrl('guestwishlist/index/products'),
+    'addToCartUrl' => $block->getUrl('checkout/cart/add'),
+    'homeUrl' => $block->getUrl(''),
+    'wishlistUrl' => $block->getUrl('wishlist'),
+    'labels' => [
+        'empty' => (string) __('You have no saved items yet.'),
+        'continue' => (string) __('Continue shopping'),
+        'remove' => (string) __('Remove'),
+        'addToCart' => (string) __('Add to Cart'),
+        'view' => (string) __('View product'),
+        'outOfStock' => (string) __('Out of stock'),
+        'signIn' => (string) __('Sign in to keep these items in your account.'),
+        'signInLink' => (string) __('Sign In'),
+    ],
+    'loginUrl' => $block->getUrl('customer/account/login'),
+];
+?>
+<div class="guest-wishlist" data-mage-init='<?= $escaper->escapeHtmlAttr(json_encode(['ProductPageRedesign_GuestWishlist/js/guest-wishlist-page' => $config])) ?>'>
+    <p class="guest-wishlist__loading"><?= $escaper->escapeHtml(__('Loading your saved items...')) ?></p>
+</div>

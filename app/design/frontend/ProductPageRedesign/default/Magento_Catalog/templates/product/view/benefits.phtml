@@ -1,0 +1,19 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$items = [
+    ['images/benefit-shipping.jpg', __('Free Shipping'), __('Eligible on orders above AED 500')],
+    ['images/benefit-assembly.jpg', __('Free Assembly'), __('Eligible on all furniture orders')],
+    ['images/benefit-pickup.jpg', __('Warehouse Pickup'), __('Next day pick up available')],
+    ['images/benefit-installments.jpg', __('Interest Free Installments'), __('Hassle-free payments. Buy now pay later!')],
+];
+?>
+<ul class="product-benefits">
+    <?php foreach ($items as [$icon, $title, $text]): ?>
+        <li class="product-benefits__item">
+            <span class="product-benefits__icon"><img src="<?= $escaper->escapeUrl($block->getViewFileUrl($icon)) ?>" alt="" width="40" height="40"/></span>
+            <strong><?= $escaper->escapeHtml($title) ?></strong>
+            <span><?= $escaper->escapeHtml($text) ?></span>
+        </li>
+    <?php endforeach; ?>
+</ul>

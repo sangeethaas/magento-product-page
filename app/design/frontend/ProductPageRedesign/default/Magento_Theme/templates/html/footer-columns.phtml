@@ -1,0 +1,53 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$columns = [
+    [__('About'), [
+        ['about-us', __('About 2XL Home')],
+        ['consumer-rights', __('Consumer Rights')],
+        ['partners-privilege-program', __('Partners Privilage Program')],
+        ['bedroom-studio', __('Bedroom Studio')],
+        ['sougha-rewards', __('Sougha Rewards')],
+        ['office-furniture', __('Office Furniture')],
+        ['blog', __('Blog')],
+        ['sitemap.html', __('Sitemap')],
+    ]],
+    [__('Customer Service'), [
+        ['shipping-information', __('Shipping Information')],
+        ['faq', __('FAQ\'s')],
+        ['easy-payment-options', __('Easy Payment Options')],
+        ['interior-design', __('Interior Design')],
+        ['join-sougha', __('Join Sougha')],
+        ['b2b-services', __('B2B Services')],
+    ]],
+    [__('Policies'), [
+        ['terms-and-condition', __('Terms and Conditions')],
+        ['privacy-policy', __('Privacy Policy')],
+        ['returns-policy', __('Return & Refund')],
+    ]],
+];
+?>
+<div class="footer-columns">
+    <?php foreach ($columns as [$heading, $links]): ?>
+        <div class="footer-block">
+            <span class="heading"><?= $escaper->escapeHtml($heading) ?></span>
+            <ul>
+                <?php foreach ($links as [$path, $label]): ?>
+                    <li><a href="<?= $escaper->escapeUrl($block->getUrl($path)) ?>"><?= $escaper->escapeHtml($label) ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endforeach; ?>
+    <div class="footer-block">
+        <span class="heading"><?= $escaper->escapeHtml(__('Contact Us')) ?></span>
+        <ul>
+            <li><a href="mailto:customersupport@2xlme.com">customersupport@2xlme.com</a></li>
+            <li><a href="tel:800295">800 2XL (295)</a></li>
+            <li><a href="<?= $escaper->escapeUrl($block->getUrl('store-location')) ?>"><?= $escaper->escapeHtml(__('Store Locator')) ?></a></li>
+        </ul>
+    </div>
+    <div class="footer-block footer-block--newsletter">
+        <span class="heading"><?= $escaper->escapeHtml(__('Sign up for newsletter')) ?></span>
+        <?= $block->getChildHtml('subscribe') ?>
+    </div>
+</div>

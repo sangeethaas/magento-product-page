@@ -1,0 +1,17 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$svg = static fn (string $d): string => '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">' . $d . '</svg>';
+$items = [
+    ['b2b-services', __('B2B Services'), ''],
+    ['easy-payment-options', __('Buy Now Pay Later'), $svg('<circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/>')],
+    ['shipping-information', __('Free Delivery & Installation'), $svg('<path d="M2 6h12v9H2zM14 9h4l3 3v3h-7z"/><circle cx="6" cy="17" r="1.800"/><circle cx="17" cy="17" r="1.800"/>')],
+    ['returns-policy', __('Easy Return & Refund'), $svg('<path d="M12 2l8 4v8l-8 4-8-4V6z"/><path d="M4 6l8 4 8-4M12 10v8"/>')],
+    ['sougha-rewards', __('Join Sougha Rewards'), $svg('<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h3v3h-3zM18 18h2v2h-2z"/>'), 'is-rewards'],
+];
+?>
+<div class="announcement-bar">
+    <?php foreach ($items as $item): ?>
+        <a class="<?= $escaper->escapeHtmlAttr($item[3] ?? '') ?>" href="<?= $escaper->escapeUrl($block->getUrl($item[0])) ?>"><?= /* @noEscape */ $item[2] ?><span><?= $escaper->escapeHtml($item[1]) ?></span></a>
+    <?php endforeach; ?>
+</div>

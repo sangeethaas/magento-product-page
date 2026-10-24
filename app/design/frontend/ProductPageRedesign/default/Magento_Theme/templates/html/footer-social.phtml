@@ -1,0 +1,19 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$social = [
+    ['Facebook', 'images/Facebook.jpg', '#'],
+    ['Instagram', 'images/Instagram.jpg', '#'],
+    ['YouTube', 'images/Youtube.jpg', '#'],
+    ['Pinterest', 'images/pinterest.jpg', '#'],
+    ['LinkedIn', 'images/Linkedin.jpg', '#'],
+    ['Snapchat', 'images/snapchat.jpg', '#'],
+    ['TikTok', 'images/tiktok.jpg', '#'],
+];
+?>
+<div class="footer-social">
+    <span class="footer-social__title"><?= $escaper->escapeHtml(__('Join our community')) ?></span>
+    <?php foreach ($social as [$name, $icon, $url]): ?>
+        <a href="<?= $escaper->escapeUrl($url) ?>" target="_blank" rel="noopener"><img src="<?= $escaper->escapeUrl($block->getViewFileUrl($icon)) ?>" alt="<?= $escaper->escapeHtmlAttr($name) ?>" width="28" height="28"/></a>
+    <?php endforeach; ?>
+</div>

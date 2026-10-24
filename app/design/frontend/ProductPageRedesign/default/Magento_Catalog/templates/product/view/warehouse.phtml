@@ -1,0 +1,13 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div class="warehouse-pickup-eligible cnc_pdp">
+    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/warehouse.jpg')) ?>" alt="" width="34" height="47"/>
+    <div class="cnc_content">
+        <h2 class="cnc_title"><?= $escaper->escapeHtml(__('Warehouse')) ?></h2>
+        <h3><?= $escaper->escapeHtml(__('Eligible for Warehouse Pickup.')) ?>
+            <a class="click-and-collect-link" href="<?= $escaper->escapeUrl($block->getUrl('click-n-collect-tnc')) ?>"><?= $escaper->escapeHtml(__('Learn more')) ?></a>
+        </h3>
+    </div>
+</div>

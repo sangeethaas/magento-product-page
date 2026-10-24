@@ -1,0 +1,31 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&amp;display=swap" src_type="url"/>
+    </head>
+    <body>
+        <referenceContainer name="header.container">
+            <block class="Magento\Framework\View\Element\Template" name="announcement.bar" template="Magento_Theme::html/announcement.phtml" before="-"/>
+        </referenceContainer>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_width" xsi:type="number">60</argument>
+                <argument name="logo_height" xsi:type="number">83</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="header.extra.icons" template="Magento_Theme::html/header-icons.phtml" after="-"/>
+        </referenceContainer>
+        <!-- Header: pull the account links into the main header row next to the cart -->
+        <move element="header.links" destination="header-wrapper" after="minicart"/>
+
+        <!-- Footer: replace the default link list/store switcher with the four-column footer -->
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="store_switcher" remove="true"/>
+        <referenceContainer name="footer">
+            <block class="Magento\Framework\View\Element\Template" name="footer.columns" template="Magento_Theme::html/footer-columns.phtml" before="-"/>
+            <block class="Magento\Framework\View\Element\Template" name="footer.popular" template="Magento_Theme::html/footer-popular.phtml" after="footer.social"/>
+            <block class="Magento\Framework\View\Element\Template" name="footer.social" template="Magento_Theme::html/footer-social.phtml" after="form.subscribe"/>
+        </referenceContainer>
+        <move element="form.subscribe" destination="footer.columns"/>
+    </body>
+</page>

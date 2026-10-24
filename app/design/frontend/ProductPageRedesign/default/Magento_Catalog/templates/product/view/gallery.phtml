@@ -1,0 +1,29 @@
+<?php
+/**
+ * Stacked gallery: every image is shown in a grid instead of a single slider image.
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ * @var $escaper \Magento\Framework\Escaper
+ */
+$images = $block->getGalleryImages()->getItems();
+$mainImageData = $block->getViewModel()->getMainProductImage();
+$altFallback = $block->getProduct()->getName();
+?>
+<div class="product-gallery-stack">
+    <?php if ($images): ?>
+        <?php $i = 0; ?>
+        <?php foreach ($images as $image): ?>
+            <a class="product-gallery-stack__item" href="<?= $escaper->escapeUrl($image->getData('large_image_url')) ?>" target="_blank" rel="noopener">
+                <img src="<?= $escaper->escapeUrl($image->getData('large_image_url')) ?>"
+                     alt="<?= $escaper->escapeHtmlAttr($image->getData('label') ?: $altFallback) ?>"
+                     <?= $i > 1 ? 'loading="lazy"' : '' ?>/>
+            </a>
+            <?php $i++; ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="product-gallery-stack__item">
+            <img src="<?= /* @noEscape */ $mainImageData ?>" alt="<?= $escaper->escapeHtmlAttr($altFallback) ?>"/>
+        </div>
+    <?php endif; ?>
+    <link itemprop="image" href="<?= /* @noEscape */ $mainImageData ?>">
+</div>

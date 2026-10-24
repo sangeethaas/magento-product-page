@@ -1,0 +1,13 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$terms = ['Sofas', 'Furniture', 'L-Shaped Sofas', 'Modular Sofas', 'Chairs', 'Ottomans, Stool & Pouf', 'TV Units', 'Tables', 'Room Dividers', 'Dining Tables', 'Dining Chairs', 'Sideboards', 'Serving Trolleys', 'Bar Furniture', 'Beds', 'Dressing Tables', 'Mattresses', 'Outdoor Furniture', 'Dinnerware Sets', 'Bathroom Accessories', 'Carpets', 'Floor Mats', 'Home Décor', 'Lamps', 'Wall Décor', 'Mirrors', 'Clocks', 'Kids Furniture', 'Coffee Tables', 'Side Tables', 'Tea & Coffee Sets', 'Bed Linen'];
+?>
+<div class="footer-popular">
+    <strong class="footer-popular__title"><?= $escaper->escapeHtml(__('Popular Searches')) ?></strong>
+    <p>
+        <?php foreach ($terms as $i => $term): ?>
+            <?= $i ? '<span class="sep">|</span>' : '' ?><a href="<?= $escaper->escapeUrl($block->getUrl('catalogsearch/result', ['_query' => ['q' => $term]])) ?>"><?= $escaper->escapeHtml($term) ?></a>
+        <?php endforeach; ?>
+    </p>
+</div>

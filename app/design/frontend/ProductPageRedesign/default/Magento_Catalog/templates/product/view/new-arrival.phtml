@@ -1,0 +1,12 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$product = $block->getProduct();
+$from = $product->getNewsFromDate();
+$to = $product->getNewsToDate();
+$now = time();
+$isNew = $from && strtotime($from) <= $now && (!$to || strtotime($to . ' +1 day') > $now);
+?>
+<?php if ($isNew): ?>
+    <span class="label-new-arrival"><?= $escaper->escapeHtml(__('New Arrival')) ?></span>
+<?php endif; ?>
