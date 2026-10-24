@@ -1,0 +1,29 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            
+            <block class="Magento\Framework\View\Element\Template" name="product.info.warehouse" template="Magento_Catalog::product/view/warehouse.phtml" after="product.info.payments"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.payments" template="Magento_Catalog::product/view/payments.phtml" after="product.info"/>
+            <block class="Magento\Framework\View\Element\Template" name="product.info.benefits" template="Magento_Catalog::product/view/benefits.phtml" after="product.info.accordion"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.accordion" template="Magento_Catalog::product/view/accordion.phtml" after="product.info.warehouse"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.price">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.discount" template="Magento_Catalog::product/view/discount.phtml" after="product.price.final"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.category" template="Magento_Catalog::product/view/category-line.phtml" after="page.main.title"/>
+        </referenceContainer>
+        <move element="product.info.stock.sku" destination="product.info.main" after="product.info.category"/>
+        <move element="product.info.review" destination="product.info.main" after="product.info.stock.sku"/>
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.new.arrival" template="Magento_Catalog::product/view/new-arrival.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="product.info.overview" remove="true"/>
+        <referenceBlock name="product.info.description" remove="true"/>
+        <referenceBlock name="reviews.tab" remove="true"/>
+        <referenceBlock name="product.reviews.wrapper" remove="true"/>
+        <referenceBlock name="product.attributes.wrapper" remove="true"/>
+        <referenceContainer name="product.review.form" remove="true"/>
+        <referenceBlock name="product.info.details" remove="true"/>
+    </body>
+</page>

@@ -1,0 +1,15 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$product = $block->getProduct();
+$category = $product->getCategory();
+if (!$category || !$category->getId()) {
+    $categories = $product->getCategoryCollection()->addAttributeToSelect(['name', 'url_key'])->setPageSize(1);
+    $category = $categories->getFirstItem();
+}
+?>
+<?php if ($category && $category->getId()): ?>
+    <div class="product-info-category">
+        <a href="<?= $escaper->escapeUrl($category->getUrl()) ?>"><?= $escaper->escapeHtml($category->getName()) ?></a>
+    </div>
+<?php endif; ?>

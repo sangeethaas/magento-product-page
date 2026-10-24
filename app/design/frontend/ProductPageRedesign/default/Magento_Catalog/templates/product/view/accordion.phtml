@@ -1,0 +1,40 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$product = $block->getProduct();
+$outputHelper = $this->helper(\Magento\Catalog\Helper\Output::class);
+$description = (string) $product->getDescription();
+$attribute = 'description';
+if (trim(strip_tags($description)) === '') {
+    $description = (string) $product->getShortDescription();
+    $attribute = 'short_description';
+}
+$sections = [];
+if (trim(strip_tags($description)) !== '') {
+    $sections[] = [
+        'id' => 'description',
+        'title' => __('Product Description'),
+        'html' => $outputHelper->productAttribute($product, $description, $attribute),
+    ];
+}
+$sections[] = [
+    'id' => 'shipping',
+    'title' => __('Shipping and Returns'),
+    'html' => '<p>' . $escaper->escapeHtml(__('The delivery schedule will depend on the item and the time when you placed the order. The standard delivery for accessories is 2-3 working days and for furniture, it takes 5-7 working days.'))
+        . ' <a href="' . $escaper->escapeUrl($block->getUrl('shipping-information')) . '"><strong>' . $escaper->escapeHtml(__('Learn more')) . '</strong></a></p>',
+];
+?>
+<div class="product-acc" data-mage-init='{"Magento_Catalog/js/product-accordion": {}}'>
+    <?php foreach ($sections as $index => $section): ?>
+        <?php $open = $index === 0; ?>
+        <div class="product-acc__item<?= $open ? ' is-open' : '' ?>">
+            <button type="button" class="product-acc__trigger" aria-expanded="<?= $open ? 'true' : 'false' ?>" aria-controls="acc-<?= $escaper->escapeHtmlAttr($section['id']) ?>">
+                <span><?= $escaper->escapeHtml($section['title']) ?></span>
+                <span class="product-acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="product-acc__panel" id="acc-<?= $escaper->escapeHtmlAttr($section['id']) ?>">
+                <div class="product-acc__inner"><?= /* @noEscape */ $section['html'] ?></div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

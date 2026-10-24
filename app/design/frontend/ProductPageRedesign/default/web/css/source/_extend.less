@@ -1,0 +1,1909 @@
+// Product page redesign (reference: 2XL Home PDP)
+@pdp-text: #000;
+@pdp-muted: #686666;
+@pdp-sale: #9f0000;
+@pdp-border: #d1d1d1;
+@pdp-font: futura, 'Jost', 'Helvetica Neue', Arial, sans-serif;
+
+.catalog-product-view {
+    .page-wrapper,
+    .product-info-main {
+        font-family: @pdp-font;
+        color: @pdp-text;
+    }
+
+    .product-info-main {
+        display: flex;
+        flex-direction: column;
+
+        .offer-text {
+            color: @pdp-sale;
+            order: -2;
+            font-size: 13px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .page-title-wrapper {
+            order: -1;
+        }
+
+        .page-title-wrapper .page-title {
+            text-transform: uppercase;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .product-info-stock-sku {
+            color: @pdp-muted;
+            font-size: 13px;
+        }
+
+        // price block
+        .price-box {
+            align-items: baseline;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 16px 0;
+
+            .special-price .price-label,
+            .old-price .price-label {
+                .lib-visually-hidden();
+            }
+
+            .special-price .price {
+                color: @pdp-sale;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .old-price .price {
+                color: @pdp-muted;
+                font-size: 16px;
+                text-decoration: line-through;
+            }
+        }
+
+        // quantity + add to cart on one row
+        .box-tocart {
+            .fieldset {
+                align-items: flex-end;
+                display: flex;
+                gap: 16px;
+                margin: 0;
+            }
+
+            .field.qty {
+                margin: 0;
+
+                .label {
+                    .lib-visually-hidden();
+                }
+
+                .control {
+                    border: 1px solid @pdp-text;
+                    display: flex;
+
+                    .input-text.qty {
+                        border: 0;
+                        height: 44px;
+                        text-align: center;
+                        width: 50px;
+                    }
+                }
+            }
+
+            .actions {
+                flex: 1;
+            }
+
+            .action.tocart {
+                background: @pdp-text;
+                border: 1px solid @pdp-text;
+                border-radius: 0;
+                font-family: @pdp-font;
+                font-size: 16px;
+                height: 46px;
+                text-transform: uppercase;
+                width: 100%;
+            }
+        }
+    }
+
+    .warehouse-pickup-eligible {
+        align-items: center;
+        border-top: 1px solid @pdp-border;
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+        padding-top: 16px;
+
+        .cnc_title {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 2px 0 0;
+        }
+    }
+
+    .product-benefits {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+        list-style: none;
+        margin: 24px 0;
+        padding: 0;
+
+        &__item {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+            gap: 4px;
+            text-align: center;
+            text-transform: uppercase;
+
+            img {
+                margin: 0 auto 4px;
+            }
+
+            span {
+                color: @pdp-muted;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .catalog-product-view .product-benefits {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// ---------- Header ----------
+.page-header {
+    background: #fff;
+    border-bottom: 1px solid @pdp-border;
+
+    .panel.header {
+        display: none; // account links are moved into the main header row
+    }
+
+    .header.content {
+        align-items: center;
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 16px 20px;
+
+        .block-search { order: 1; flex: 1; margin: 0; max-width: 360px; position: static; width: auto; }
+        .logo { order: 2; margin: 0; }
+        .minicart-wrapper { order: 4; float: none; margin: 0; }
+        .header.links { order: 3; display: flex; gap: 16px; list-style: none; margin: 0; padding: 0; }
+        .header.links .greet.welcome,
+        .header.links .authorization-link + li { display: none; }
+        .header.links a { color: @pdp-text; font-size: 13px; text-transform: uppercase; }
+    }
+}
+
+// ---------- Footer ----------
+.page-footer {
+    background: #fff;
+    border-top: 1px solid @pdp-border;
+    font-family: @pdp-font;
+    margin-top: 40px;
+
+    .footer.content {
+        border: 0;
+        padding: 40px 20px 20px;
+    }
+
+    .footer-columns {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 32px;
+
+        .heading {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        ul { list-style: none; margin: 0; padding: 0; }
+        li { margin-bottom: 8px; }
+        a { color: @pdp-text; font-size: 13px; text-transform: uppercase; }
+
+        .block.newsletter { margin: 0; max-width: none; width: auto; float: none; }
+        .block.newsletter .title { display: none; }
+        .block.newsletter .control:before { display: none; }
+        .block.newsletter input { padding-left: 10px; }
+    }
+
+    .footer-social {
+        align-items: center;
+        border-top: 1px solid @pdp-border;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+        padding: 20px 0;
+
+        &__title { font-size: 13px; text-transform: uppercase; }
+    }
+
+    .copyright {
+        background: transparent;
+        color: @pdp-muted;
+        font-size: 12px;
+        padding: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .page-footer .footer-columns {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+// ---------- Announcement bar ----------
+.announcement-bar {
+    background: #000;
+    color: #fff;
+    font-family: @pdp-font;
+    font-size: 12px;
+    letter-spacing: .5px;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+// ---------- Gallery ----------
+.catalog-product-view {
+    .product.media {
+        position: relative;
+
+        .label-new-arrival {
+            background: #593c39;
+            color: #fff;
+            font-size: 12px;
+            padding: 3px 10px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 5;
+        }
+
+        .fotorama__nav--thumbs .fotorama__nav__frame {
+            border: 1px solid #eee;
+        }
+
+        .fotorama__nav--thumbs .fotorama__active {
+            border: 1px solid @pdp-text;
+        }
+    }
+}
+
+// ---------- Discount badge ----------
+.product-discount {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin: -8px 0 16px;
+
+    &__badge {
+        background: @pdp-sale;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 2px 8px;
+    }
+
+    &__text {
+        color: @pdp-sale;
+        font-size: 14px;
+    }
+}
+
+// ---------- Accordion (description / shipping / reviews) ----------
+.catalog-product-view .product.info.detailed {
+    clear: both;
+    margin-top: 24px;
+
+    .product.data.items.product-accordion {
+        > .item.title {
+            border-top: 1px solid @pdp-text;
+            float: none;
+            margin: 0;
+            width: 100%;
+
+            > .switch {
+                background: transparent;
+                border: 0;
+                color: @pdp-text;
+                font-size: 16px;
+                font-weight: 400;
+                height: auto;
+                padding: 16px 30px 16px 0;
+                position: relative;
+                text-transform: uppercase;
+
+                &:after {
+                    content: '+';
+                    position: absolute;
+                    right: 4px;
+                    top: 14px;
+                }
+            }
+
+            &.active > .switch:after {
+                content: '\2212';
+            }
+        }
+
+        > .item.content {
+            border: 0;
+            float: none;
+            margin: 0;
+            padding: 0 0 16px;
+            width: 100%;
+        }
+    }
+}
+
+// ---------- Round 2 tweaks ----------
+// qty + add to cart on one row
+.catalog-product-view .product-info-main .box-tocart {
+    margin: 16px 0;
+
+    .fieldset {
+        align-items: stretch;
+        display: flex;
+        gap: 16px;
+        margin: 0;
+    }
+
+    .field.qty,
+    .actions {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .field.qty .control {
+        height: 46px;
+    }
+
+    .field.qty .input-text.qty {
+        height: 44px;
+    }
+}
+
+// SKU / stock left-aligned under the title, like the reference
+.catalog-product-view .product-info-main {
+    .product-info-stock-sku {
+        float: none;
+        text-align: left;
+
+        .stock {
+            display: none;
+        }
+
+        .product.attribute.sku {
+            display: block;
+        }
+    }
+
+    .product-info-price {
+        border-bottom: 0;
+        margin: 0;
+    }
+
+    .product-reviews-summary .action.add {
+        color: @pdp-muted;
+        font-size: 13px;
+    }
+}
+
+// footer: stop link text wrapping
+.page-footer .footer-columns {
+    ul {
+        padding: 0;
+    }
+
+    a {
+        font-size: 12px;
+    }
+}
+
+// header: logo left, wide search, icons right
+.page-header .header.content {
+    .logo { order: 1; }
+
+    .block-search {
+        flex: 1;
+        max-width: none;
+        order: 2;
+    }
+
+    .header.links { order: 3; }
+    .minicart-wrapper { order: 4; }
+}
+
+// ---------- Round 3 ----------
+.announcement-bar {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    justify-content: center;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        white-space: nowrap;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// search: magnifier on the left inside the box
+.page-header .block-search {
+    .control {
+        position: relative;
+    }
+
+    .input-text {
+        padding-left: 40px;
+    }
+
+    .action.search {
+        left: 8px;
+        right: auto;
+    }
+}
+
+// ---------- Round 4: header to match reference ----------
+@user-icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.4'><circle cx='12' cy='8' r='4'/><path d='M4 21c0-4.500 3.500-7 8-7s8 2.500 8 7'/></svg>";
+@cart-icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.4'><path d='M2 3h3l2.500 12h11L21 7H6'/><circle cx='9' cy='19.500' r='1.500'/><circle cx='17' cy='19.500' r='1.500'/></svg>";
+
+.announcement-bar {
+    justify-content: flex-end;
+    padding: 10px 24px;
+
+    a {
+        align-items: center;
+        display: inline-flex;
+        font-size: 13px;
+        gap: 8px;
+        padding: 0 18px;
+        position: relative;
+
+        &:not(:last-child):after {
+            background: #fff;
+            content: '';
+            height: 22px;
+            position: absolute;
+            right: -16px;
+            width: 2px;
+        }
+
+        &.is-rewards {
+            font-size: 18px;
+            margin-left: 14px;
+        }
+    }
+}
+
+.page-header {
+    .header.content {
+        padding: 0 24px;
+        gap: 24px;
+
+        .logo {
+            margin: 4px 0;
+
+            img { height: 83px; width: 60px; }
+        }
+
+        .block-search {
+            flex: 0 1 870px;
+            margin: 0 auto;
+            max-width: 60%;
+            padding: 0;
+            position: relative;
+            width: auto;
+
+            .control { border: 0; padding: 0; }
+
+            .input-text {
+                border: 1px solid #ccc;
+                height: 52px;
+                padding: 0 12px 0 52px;
+                position: static;
+                width: 100%;
+
+                &::placeholder { color: #bbb; }
+            }
+
+            .actions {
+                position: absolute;
+                left: 14px;
+                top: 0;
+                bottom: 0;
+                z-index: 2;
+
+                .action.search {
+                    height: 52px;
+                    left: 0;
+                    position: static;
+                    right: auto;
+
+                    &:before {
+                        color: #000;
+                        font-size: 26px;
+                    }
+                }
+            }
+        }
+
+        // account and cart as outline icons
+        .header.links {
+            .authorization-link a,
+            .link.wishlist a {
+                background: url(@user-icon) center / 24px no-repeat;
+                display: inline-block;
+                font-size: 0;
+                height: 28px;
+                width: 28px;
+            }
+
+            .link.wishlist { display: none; }
+        }
+
+        .minicart-wrapper .action.showcart {
+            &:before {
+                background: url(@cart-icon) center / 24px no-repeat;
+                content: '';
+                display: inline-block;
+                height: 28px;
+                width: 28px;
+            }
+
+            .text { .lib-visually-hidden(); }
+        }
+
+        .header-icons {
+            align-items: center;
+            display: flex;
+            gap: 20px;
+            order: 5;
+
+            &__item { color: #000; display: inline-flex; }
+        }
+    }
+}
+
+// category navigation bar
+.nav-sections {
+    background: #fafafa;
+    border-top: 1px solid #000;
+
+    .navigation {
+        background: transparent;
+        padding: 0;
+
+        > ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .level0 > .level-top {
+            border: 0;
+            color: #000;
+            font-family: @pdp-font;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 16px 16px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+// ---------- Round 5 ----------
+@pdp-font: 'Jost', futura, 'Helvetica Neue', Arial, sans-serif;
+
+.announcement-bar,
+.page-header,
+.nav-sections {
+    font-family: 'Jost', futura, 'Helvetica Neue', Arial, sans-serif;
+}
+
+// icon order: globe, user, cart, pin
+.page-header .header.content {
+    max-width: none;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+
+    .logo { order: 1; margin-left: 0; }
+    .block-search { order: 2; }
+    .header-icons { display: contents; }
+    .header-icons__lang { order: 3; }
+    .header.links { order: 4; }
+    .minicart-wrapper { order: 5; }
+    .header-icons__pin { order: 6; }
+}
+
+// announcement bar sizing to match reference
+.announcement-bar {
+    min-height: 64px;
+    padding: 0 40px;
+
+    a {
+        font-size: 14px;
+        gap: 10px;
+        padding: 0 22px;
+
+        svg { height: 32px; width: 32px; }
+
+        &:not(:last-child):after {
+            height: 28px;
+            right: -2px;
+        }
+
+        &.is-rewards {
+            font-size: 22px;
+            font-weight: 300;
+            margin-left: 20px;
+
+            svg { height: 30px; width: 30px; }
+        }
+    }
+}
+
+// small screens: one message at a time, sliding in turn
+@keyframes announcement-slide {
+    0% { opacity: 0; transform: translateY(100%); }
+    4%, 20% { opacity: 1; transform: translateY(0); }
+    24% { opacity: 0; transform: translateY(-100%); }
+    100% { opacity: 0; transform: translateY(-100%); }
+}
+
+@media (max-width: 1100px) {
+    .announcement-bar {
+        justify-content: center;
+        min-height: 44px;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+
+        a {
+            animation: announcement-slide 15s infinite;
+            justify-content: center;
+            left: 0;
+            opacity: 0;
+            padding: 0;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -16px;
+            height: 32px;
+
+            &:after { display: none; }
+
+            svg { height: 22px; width: 22px; }
+
+            &.is-rewards { font-size: 16px; margin-left: 0; }
+
+            &:nth-child(1) { animation-delay: 0s; }
+            &:nth-child(2) { animation-delay: 3s; }
+            &:nth-child(3) { animation-delay: 6s; }
+            &:nth-child(4) { animation-delay: 9s; }
+            &:nth-child(5) { animation-delay: 12s; }
+        }
+    }
+}
+
+// ---------- Round 6: banner size + sideways slide ----------
+.announcement-bar {
+    height: 64px;
+    line-height: 1;
+    min-height: 0;
+    padding: 0 40px;
+
+    a {
+        font-size: 13px;
+        padding: 0 20px;
+
+        svg { height: 28px; width: 28px; }
+
+        &:not(:last-child):after { height: 26px; }
+
+        &.is-rewards {
+            font-size: 19px;
+            margin-left: 16px;
+
+            svg { height: 26px; width: 26px; }
+        }
+    }
+}
+
+@keyframes announcement-slide {
+    0% { opacity: 0; transform: translateX(100%); }
+    4%, 20% { opacity: 1; transform: translateX(0); }
+    24% { opacity: 0; transform: translateX(-100%); }
+    100% { opacity: 0; transform: translateX(-100%); }
+}
+
+@media (max-width: 1100px) {
+    .announcement-bar {
+        height: 44px;
+
+        a { font-size: 13px; }
+    }
+}
+
+// ---------- Round 7: breadcrumbs, details, price, add to cart ----------
+// full-width product page like the reference
+.catalog-product-view .page-main {
+    max-width: none;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.catalog-product-view .breadcrumbs {
+    font-family: @pdp-font;
+    font-size: 18px;
+    margin: 0;
+    max-width: none;
+    padding: 24px 0 20px;
+
+    .items {
+        font-size: 18px;
+    }
+
+    .item {
+        color: @pdp-text;
+
+        a {
+            color: @pdp-text;
+        }
+
+        &:not(:last-child):after {
+            content: '/';
+            font-family: inherit;
+            font-size: 18px;
+            margin: 0 6px;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .catalog-product-view {
+        .product.media { width: 54%; }
+        .product-info-main { width: 42%; }
+    }
+}
+
+.catalog-product-view .product-info-main {
+    .page-title-wrapper .page-title {
+        font-size: 32px;
+        font-weight: 300;
+        letter-spacing: 3px;
+        line-height: 1.2;
+    }
+
+    // SKU directly under the title, left aligned
+    .product-info-stock-sku {
+        display: flex;
+        font-size: 16px;
+        justify-content: flex-start;
+        margin: 8px 0 0;
+        padding: 0;
+
+        > * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .product.attribute.sku {
+            display: flex;
+            gap: 6px;
+
+            .type:after {
+                content: ':';
+            }
+        }
+    }
+
+    // review link right under the title row
+    .product-reviews-summary {
+        margin: 6px 0 0;
+        order: 0;
+        text-align: left;
+    }
+
+    // price: old price above, new price large and black, discount in red beside it
+    .product-info-price {
+        align-items: flex-end;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 12px;
+        margin: 24px 0 20px;
+
+        .price-box {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 2px;
+            margin: 0;
+
+            .special-price .price {
+                color: @pdp-text;
+                font-size: 32px;
+                font-weight: 400;
+            }
+
+            .old-price .price {
+                color: @pdp-muted;
+                font-size: 20px;
+            }
+
+            .price-final_price:only-child .price {
+                color: @pdp-text;
+                font-size: 32px;
+                font-weight: 400;
+            }
+        }
+
+        .product-discount {
+            margin: 0 0 6px;
+
+            &__text {
+                color: @pdp-sale;
+                font-size: 20px;
+            }
+        }
+    }
+
+    // quantity label + stepper + wide button
+    .box-tocart {
+        .field.qty {
+            flex: 1 1 49%;
+
+            .label {
+                clip: auto;
+                display: block;
+                font-size: 20px;
+                font-weight: 400;
+                height: auto;
+                margin: 0 0 8px;
+                position: static;
+                text-transform: uppercase;
+                width: auto;
+            }
+
+            .control {
+                align-items: center;
+                display: flex;
+                height: 62px;
+                justify-content: space-between;
+                width: 100%;
+
+                .input-text.qty {
+                    flex: 0 0 60px;
+                    font-size: 22px;
+                    height: 60px;
+                }
+
+                .qty-btn {
+                    background: transparent;
+                    border: 0;
+                    cursor: pointer;
+                    flex: 1;
+                    font-size: 24px;
+                    height: 60px;
+                }
+            }
+        }
+
+        .actions {
+            align-self: flex-end;
+            flex: 1 1 51%;
+        }
+
+        .action.tocart {
+            font-size: 18px;
+            font-weight: 400;
+            height: 62px;
+            letter-spacing: 0;
+        }
+    }
+}
+
+// ---------- Round 8 ----------
+.catalog-product-view .breadcrumbs {
+    padding: 24px 30px 20px;
+}
+
+.catalog-product-view .product-info-main .box-tocart {
+    .fieldset {
+        align-items: flex-end;
+    }
+
+    .actions {
+        align-items: flex-end;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .field.qty .control {
+        height: 64px;
+    }
+
+    .action.tocart {
+        height: 64px;
+        margin: 0;
+    }
+}
+
+// ---------- Round 9: heart, category line, meta row, price details ----------
+@heart-icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3' stroke-linejoin='round'><path d='M12 21s-8.500-5.500-8.500-11.500A4.800 4.800 0 0 1 12 6.700a4.800 4.800 0 0 1 8.500 2.800C20.500 15.500 12 21 12 21z'/></svg>";
+@pdp-discount: #c8202a;
+
+.catalog-product-view .product-info-main {
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+
+    > * {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .page-title-wrapper {
+        order: -4;
+        padding-right: 70px;
+    }
+
+    .product-info-category {
+        flex: 1 1 auto;
+        font-size: 18px;
+        font-weight: 300;
+        margin-top: 8px;
+        order: -3;
+        text-transform: uppercase;
+
+        a { color: @pdp-text; }
+    }
+
+    .product-reviews-summary {
+        flex: 0 0 auto;
+        margin: 8px 0 0 auto;
+        order: -3;
+
+        .action.add {
+            color: #222;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
+    .product-info-stock-sku {
+        font-size: 18px;
+        font-weight: 300;
+        margin-top: 4px;
+        order: -2;
+
+        .product.attribute.sku {
+            color: @pdp-text;
+        }
+    }
+
+    // wishlist heart at the top right of the title row
+    .product-social-links .product-addto-links {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        .action.tocompare { display: none; }
+
+        .action.towishlist {
+            background: url(@heart-icon) center / contain no-repeat;
+            display: block;
+            font-size: 0;
+            height: 44px;
+            width: 44px;
+
+            &:before { display: none; }
+            span { .lib-visually-hidden(); }
+        }
+    }
+
+    // price details
+    .product-info-price {
+        margin: 28px 0 14px;
+
+        .price-box {
+            .old-price .price-wrapper .price,
+            .old-price .price {
+                color: #666;
+                font-size: 20px;
+                font-weight: 400;
+            }
+
+            .special-price .price-wrapper .price,
+            .special-price .price {
+                color: @pdp-text;
+                font-size: 32px;
+                font-weight: 400;
+            }
+        }
+
+        .product-discount__text {
+            color: @pdp-discount;
+            font-size: 18px;
+        }
+    }
+}
+
+// ---------- Round 10: align discount text with the new price ----------
+.catalog-product-view .product-info-main .product-info-price {
+    align-items: flex-end;
+    align-items: last baseline;
+
+    .product-discount {
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+    }
+
+    .product-discount__text {
+        line-height: 1;
+    }
+}
+
+// ---------- Round 11: accordion order + circled benefit icons ----------
+.catalog-product-view .product-info-main {
+    .product.info.detailed {
+        margin-top: 8px;
+
+        .product.data.items.product-accordion {
+            border-bottom: 1px solid @pdp-text;
+
+            > .item.title > .switch {
+                font-size: 18px;
+                font-weight: 400;
+            }
+
+            > .item.content {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .product-benefits {
+        margin: 32px 0;
+
+        &__item {
+            align-items: center;
+            font-size: 11px;
+            gap: 6px;
+        }
+
+        &__icon {
+            align-items: center;
+            border: 1px solid @pdp-text;
+            border-radius: 50%;
+            display: flex;
+            height: 76px;
+            justify-content: center;
+            margin-bottom: 8px;
+            width: 76px;
+
+            img {
+                margin: 0;
+                max-height: 38px;
+                max-width: 38px;
+            }
+        }
+
+        &__item strong {
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+    }
+}
+
+// ---------- Round 12: independent animated accordion + stacked gallery ----------
+.product-acc {
+    border-bottom: 1px solid @pdp-text;
+    margin: 8px 0 0;
+
+    &__item {
+        border-top: 1px solid @pdp-text;
+    }
+
+    &__trigger {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        color: @pdp-text;
+        cursor: pointer;
+        display: flex;
+        font-family: @pdp-font;
+        font-size: 18px;
+        font-weight: 400;
+        justify-content: space-between;
+        padding: 16px 4px 16px 0;
+        text-align: left;
+        text-transform: uppercase;
+        width: 100%;
+    }
+
+    &__icon {
+        font-size: 24px;
+        line-height: 1;
+        transition: transform .3s ease;
+
+        &:before {
+            content: '+';
+        }
+    }
+
+    &__item.is-open &__icon:before {
+        content: '\2212';
+    }
+
+    // smooth height animation without fixed heights
+    &__panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows .4s ease;
+    }
+
+    &__item.is-open &__panel {
+        grid-template-rows: 1fr;
+    }
+
+    &__inner {
+        font-size: 15px;
+        line-height: 1.5;
+        opacity: 0;
+        overflow: hidden;
+        transition: opacity .4s ease, padding .4s ease;
+    }
+
+    &__item.is-open &__inner {
+        opacity: 1;
+        padding-bottom: 16px;
+    }
+}
+
+.product-gallery-stack {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+
+    &__item {
+        display: block;
+
+        img {
+            display: block;
+            height: auto;
+            width: 100%;
+        }
+
+        // 1 wide, 2 half, 1 wide, 2 half ...
+        &:nth-child(3n + 1) {
+            grid-column: 1 / -1;
+        }
+    }
+}
+
+// ---------- Guest wishlist: filled heart once saved ----------
+@heart-filled-icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c8202a' stroke='%23c8202a' stroke-width='1.3' stroke-linejoin='round'><path d='M12 21s-8.500-5.500-8.500-11.500A4.800 4.800 0 0 1 12 6.700a4.800 4.800 0 0 1 8.500 2.800C20.500 15.500 12 21 12 21z'/></svg>";
+
+.catalog-product-view .product-info-main .product-social-links .product-addto-links .action.towishlist.is-wishlisted {
+    background-image: url(@heart-filled-icon);
+}
+
+// ---------- Guest wishlist page ----------
+.guest-wishlist {
+    font-family: @pdp-font;
+
+    &__signin { margin-bottom: 24px; }
+
+    &__list {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(2, 1fr);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__image img { display: block; height: auto; width: 100%; }
+    &__name { color: @pdp-text; font-size: 16px; text-transform: uppercase; }
+    &__old { color: #666; margin-right: 8px; text-decoration: line-through; }
+    &__now { font-size: 20px; }
+    &__oos { color: @pdp-sale; }
+
+    &__actions {
+        align-items: center;
+        display: flex;
+        gap: 16px;
+        margin-top: auto;
+    }
+
+    &__remove {
+        background: none;
+        border: 0;
+        color: @pdp-muted;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+@media (min-width: 768px) {
+    .guest-wishlist__list { grid-template-columns: repeat(4, 1fr); }
+}
+
+// ---------- Round 13: mobile (phones) ----------
+@media (max-width: 767px) {
+    // header: [menu][globe]   logo   [user][cart][pin]  / full-width search below
+    .page-header .header.content {
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0 14px;
+        padding: 0 16px;
+        position: relative;
+
+        > * { margin: 0; }
+
+        .logo {
+            left: 50%;
+            margin: 0;
+            order: 2;
+            position: absolute;
+            top: 8px;
+            transform: translateX(-50%);
+            z-index: 1;
+
+            img { height: 62px; width: 45px; }
+        }
+
+        .header-icons__lang { margin: 0 auto 0 44px; order: 1; }
+        .header.links { order: 3; }
+        .minicart-wrapper { order: 4; }
+        .header-icons__pin { order: 5; }
+
+        .header-icons__lang,
+        .header.links,
+        .minicart-wrapper,
+        .header-icons__pin {
+            align-items: center;
+            display: flex;
+            min-height: 78px;
+        }
+
+        .block-search {
+            flex: 0 0 100%;
+            margin: 0 0 12px;
+            max-width: 100%;
+            order: 10;
+            width: 100%;
+
+            // Luma's own mobile toggle icon and collapsed form
+            .label { display: none; }
+
+            .control {
+                display: block;
+                padding: 0;
+            }
+
+            .actions .action.search {
+                display: block;
+                height: 48px;
+                opacity: 1;
+            }
+
+            .input-text {
+                height: 48px;
+                margin: 0;
+            }
+        }
+    }
+
+    // breadcrumbs are hidden by Luma on phones; the reference shows them
+    .catalog-product-view .breadcrumbs {
+        display: block;
+        font-size: 18px;
+        padding: 16px 16px 12px;
+        text-align: center;
+
+        .items { font-size: 18px; }
+    }
+
+    // gallery edge to edge, label top-left, heart over the image
+    .catalog-product-view {
+        .page-main {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .columns .column.main { position: relative; }
+
+        .product.media {
+            margin: 0;
+            width: 100%;
+
+            .label-new-arrival {
+                border-radius: 4px;
+                left: 12px;
+                right: auto;
+                top: 12px;
+            }
+        }
+
+        .product-info-main {
+            padding: 16px;
+            position: static;
+            width: 100%;
+
+            .page-title-wrapper { padding-right: 0; }
+
+            .product-social-links .product-addto-links {
+                right: 12px;
+                top: 12px;
+            }
+        }
+    }
+}
+
+// ---------- Round 14: mobile search bar fix ----------
+@search-icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'><circle cx='10.500' cy='10.500' r='6.500'/><path d='M15.500 15.500L21 21'/></svg>";
+
+@media (max-width: 767px) {
+    .page-header .header.content {
+        box-sizing: border-box;
+        max-width: 100%;
+        width: 100%;
+
+        .block-search {
+            box-sizing: border-box;
+            padding: 0;
+            position: relative;
+
+            .form.minisearch {
+                display: block;
+                position: relative;
+                width: 100%;
+            }
+
+            .control {
+                box-sizing: border-box;
+                width: 100%;
+            }
+
+            .input-text {
+                box-sizing: border-box;
+                padding: 0 12px 0 48px;
+                width: 100%;
+            }
+
+            .actions {
+                bottom: 0;
+                left: 4px;
+                position: absolute;
+                top: 0;
+                width: 44px;
+                z-index: 2;
+
+                .action.search {
+                    background: url(@search-icon) center / 24px no-repeat;
+                    border: 0;
+                    box-shadow: none;
+                    font-size: 0;
+                    height: 48px;
+                    padding: 0;
+                    position: static;
+                    width: 44px;
+
+                    &:before { display: none; }
+                    span { .lib-visually-hidden(); }
+                }
+            }
+        }
+    }
+}
+
+// ---------- Round 15: footer to match the reference ----------
+.page-footer {
+    background: #fff;
+    border-top: 0;
+    margin-top: 60px;
+
+    .footer.content {
+        border-top: 1px solid #555;
+        margin: 0 46px;
+        max-width: none;
+        padding: 56px 0 24px;
+    }
+
+    .footer-columns {
+        gap: 32px;
+        grid-template-columns: repeat(2, 1fr);
+
+        .heading {
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 0;
+            margin-bottom: 28px;
+        }
+
+        li { margin-bottom: 14px; }
+
+        a {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        // newsletter: underline field + wide grey button
+        .block.newsletter {
+            .form.subscribe { display: block; }
+
+            .field.newsletter,
+            .actions {
+                display: block;
+                width: 100%;
+            }
+
+            .control { margin: 0; }
+
+            input {
+                background: transparent;
+                border: 0;
+                border-bottom: 1px solid #ddd;
+                border-radius: 0;
+                box-shadow: none;
+                font-family: @pdp-font;
+                font-size: 16px;
+                height: 48px;
+                padding: 0 12px;
+                width: 100%;
+
+                &::placeholder { color: #bbb; }
+            }
+
+            .action.subscribe {
+                background: #d3d3d3;
+                border: 1px solid #ccc;
+                border-radius: 0;
+                color: #222;
+                font-family: @pdp-font;
+                font-size: 22px;
+                font-weight: 400;
+                height: 46px;
+                margin-top: 24px;
+                text-transform: uppercase;
+                width: 100%;
+            }
+        }
+    }
+
+    .footer-social {
+        border-top: 0;
+        justify-content: flex-end;
+
+        &__title { display: none; }
+    }
+
+    .footer-popular {
+        padding: 8px 0 24px;
+
+        &__title {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        p { line-height: 2; margin: 0; }
+
+        a { color: #555; font-size: 14px; font-weight: 300; }
+
+        .sep { color: #555; margin: 0 8px; }
+    }
+
+    .copyright {
+        background: transparent;
+        color: #222;
+        font-size: 20px;
+        padding: 40px 0 48px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .page-footer .footer-columns {
+        grid-template-columns: 1.2fr 1.2fr 1fr 1.3fr 1.4fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .page-footer {
+        .footer.content { margin: 0 16px; }
+        .footer-social { justify-content: center; &__title { display: inline; } }
+        .copyright { font-size: 14px; }
+    }
+}
+
+// ---------- Round 16: mega menu + underline instead of the orange bar ----------
+@media (min-width: 768px) {
+    .nav-sections {
+        position: relative;
+    }
+
+    .navigation {
+        position: static;
+
+        // no orange bar under the active / hovered category: black underline on the text instead
+        .level0 > .level-top,
+        .level0.active > .level-top,
+        .level0.has-active > .level-top,
+        .level0 > .level-top.ui-state-active {
+            border: 0 !important;
+            border-bottom: 0 !important;
+            padding-left: 14px;
+            padding-right: 14px;
+
+            span {
+                text-decoration: none;
+            }
+        }
+
+        .level0.active > .level-top span,
+        .level0.has-active > .level-top span,
+        .level0:hover > .level-top span {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 6px;
+        }
+
+        .level0 {
+            position: static;
+        }
+
+        // the mega panel: full width, columns of subcategories
+        .level0 > .submenu {
+            background: #fff;
+            border: 0;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, .12);
+            box-sizing: border-box;
+            display: none !important;
+            gap: 36px 24px;
+            grid-template-columns: repeat(4, minmax(0, 270px));
+            justify-content: center;
+            left: 0 !important;
+            margin: 0;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 40px 24px;
+            position: absolute;
+            right: 0;
+            top: 100% !important;
+            width: 100% !important;
+            z-index: 300;
+        }
+
+        .level0.parent:hover > .submenu,
+        .level0.parent:focus-within > .submenu {
+            display: grid !important;
+        }
+
+        // columns: level1 = bold heading, level2 = plain links
+        .level0 .submenu .level1 {
+            margin: 0;
+
+            > a {
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+        .level0 .submenu a {
+            border: 0 !important;
+            color: @pdp-text;
+            display: block;
+            font-family: @pdp-font;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.4;
+            padding: 6px 0;
+
+            &:hover {
+                background: transparent;
+                text-decoration: underline;
+            }
+        }
+
+        .level0 .submenu .active > a {
+            border: 0 !important;
+        }
+
+        // nested level: always visible inside its column, not a fly-out
+        .level0 .submenu .level1 > .submenu {
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            display: block !important;
+            left: auto !important;
+            min-width: 0;
+            padding: 0;
+            position: static;
+            top: auto !important;
+            width: auto !important;
+        }
+
+        // Luma's "All <category>" row is not in the reference
+        .all-category {
+            display: none !important;
+        }
+    }
+}
+
+// ---------- Round 17: mega panel measures from the full-width bar ----------
+@media (min-width: 768px) {
+    .navigation > ul {
+        position: static !important;
+    }
+}
+
+// ---------- Round 18: mega menu fixes (specificity, no chevron, hover-only underline, full-bleed) ----------
+@media (min-width: 768px) {
+    // Luma's desktop sheet loads after this one and sets position: relative on .level0;
+    // note the submenu <ul> also carries the class "level0", so target the <li> only.
+    .nav-sections .navigation li.level0 {
+        position: static !important;
+    }
+
+    .nav-sections .navigation > ul {
+        position: static !important;
+    }
+
+    .nav-sections .navigation li.level0 > .submenu {
+        left: 50% !important;
+        position: absolute !important;
+        transform: translateX(-50%);
+        width: 100vw !important;
+    }
+
+    .nav-sections .navigation li.level0.parent:hover > .submenu,
+    .nav-sections .navigation li.level0.parent:focus-within > .submenu {
+        display: grid !important;
+    }
+
+    // no chevron after parent categories
+    .nav-sections .navigation li.level0 > .level-top:after,
+    .nav-sections .navigation li.level0 > .level-top:before,
+    .nav-sections .navigation li.level0 > .level-top .ui-menu-icon {
+        content: none !important;
+        display: none !important;
+    }
+
+    // underline only on the category being hovered, never on the "selected" one
+    .nav-sections .navigation li.level0 > .level-top span {
+        text-decoration: none !important;
+    }
+
+    .nav-sections .navigation li.level0:hover > .level-top span,
+    .nav-sections .navigation li.level0:focus-within > .level-top span {
+        text-decoration: underline !important;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 6px;
+    }
+
+    .page-wrapper {
+        overflow-x: clip;
+    }
+
+    // keep the open menu above page content such as the gallery label
+    .nav-sections {
+        position: relative;
+        z-index: 300;
+    }
+}
+
+// ---------- Round 19: mega menu details ----------
+@media (min-width: 768px) {
+    // no arrow icons next to the column headings
+    .nav-sections .navigation .submenu .ui-menu-icon,
+    .nav-sections .navigation .submenu a:after,
+    .nav-sections .navigation .submenu a:before {
+        content: none !important;
+        display: none !important;
+    }
+
+    .nav-sections .navigation li.level0 > .submenu {
+        border: 0 !important;
+        border-top: 0 !important;
+    }
+
+    .nav-sections .navigation li.level0 > .submenu a {
+        color: @pdp-text !important;
+        font-size: 16px;
+        line-height: 24px;
+        padding: 3px 0 !important;
+    }
+
+    .nav-sections .navigation li.level0 > .submenu li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-sections .navigation li.level0 > .submenu li > ul.submenu {
+        margin: 6px 0 0;
+    }
+
+    .nav-sections .navigation li.level0 > .submenu {
+        padding: 40px 24px !important;
+    }
+}
+
+// ---------- Round 20: reward points + instalment cards ----------
+.catalog-product-view .product-info-main .product-payments {
+    margin: 28px 0 8px;
+
+    .product-points {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+
+        &__text {
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+    }
+
+    &__card {
+        align-items: center;
+        border: 1px solid #dfe1e8;
+        border-radius: 10px;
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+        margin-bottom: 18px;
+        padding: 18px 20px;
+    }
+
+    &__text {
+        font-size: 15px;
+        line-height: 1.45;
+        margin: 0;
+
+        strong { font-weight: 700; }
+    }
+
+    &__link {
+        color: #3f7fd9;
+        display: block;
+        font-weight: 700;
+        margin-top: 4px;
+
+        &--plain {
+            color: @pdp-text;
+            font-weight: 400;
+            text-decoration: underline;
+        }
+    }
+
+    &__badge {
+        border-radius: 10px;
+        color: #111;
+        flex: 0 0 auto;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 8px 18px;
+
+        &--split { background: #7dffa3; }
+        &--monthly { background: linear-gradient(90deg, #ffb48a, #f6c6ea 50%, #a88be0); }
+    }
+}
+
+// ---------- Round 21: points icon + narrower instalment cards ----------
+.catalog-product-view .product-info-main .product-payments {
+    .product-points__icon {
+        display: block;
+        height: 44px;
+        width: auto;
+    }
+
+    &__card {
+        max-width: 420px;
+    }
+
+    &__text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .catalog-product-view .product-info-main .product-payments__card {
+        max-width: none;
+    }
+}
+
+// ---------- Round 22: warehouse block like the reference, no hover colour on accordion headers ----------
+.product-acc .product-acc__trigger {
+    &:hover,
+    &:focus,
+    &:active {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        color: @pdp-text !important;
+    }
+}
+
+.catalog-product-view .product-info-main .warehouse-pickup-eligible {
+    align-items: flex-start;
+    border-top: 0;
+    gap: 20px;
+    margin-top: 56px;
+    padding-top: 0;
+
+    img {
+        flex: 0 0 auto;
+        height: auto;
+        width: 40px;
+    }
+
+    .cnc_title {
+        font-size: 18px;
+        font-weight: 300;
+        margin: 0 0 40px;
+        text-transform: uppercase;
+    }
+
+    h3 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .click-and-collect-link {
+        color: #5bcdf7;
+        font-weight: 400;
+        margin-left: 10px;
+        text-decoration: underline;
+    }
+}

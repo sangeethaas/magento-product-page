@@ -1,0 +1,12 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div class="header-icons">
+    <span class="header-icons__item header-icons__lang" title="<?= $escaper->escapeHtmlAttr(__('Language')) ?>">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16.500 0 19M12 2.5c-3 3-3 16.500 0 19"/></svg>
+    </span>
+    <a class="header-icons__item header-icons__pin" href="<?= $escaper->escapeUrl($block->getUrl('store-location')) ?>" title="<?= $escaper->escapeHtmlAttr(__('Store Locator')) ?>">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22s7-6.500 7-12a7 7 0 0 0-14 0c0 5.500 7 12 7 12z"/><circle cx="12" cy="10" r="2.500"/></svg>
+    </a>
+</div>

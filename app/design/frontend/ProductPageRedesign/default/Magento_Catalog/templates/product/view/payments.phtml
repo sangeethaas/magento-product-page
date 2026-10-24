@@ -1,0 +1,41 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$product = $block->getProduct();
+$final = (float) $product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue();
+if ($final <= 0 || !$product->isSaleable()) {
+    return;
+}
+
+// Placeholder rules for the demo: 1 reward point per currency unit, instalments split over 12 months.
+$pointsPerUnit = 1;
+$months = 12;
+$payments = 4;
+
+$priceHelper = $this->helper(\Magento\Framework\Pricing\Helper\Data::class);
+$points = (int) floor($final * $pointsPerUnit);
+$monthly = $priceHelper->currency($final / $months, true, false);
+?>
+<div class="product-payments">
+    <div class="product-points">
+        <img class="product-points__icon" src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/points-icon.png')) ?>" alt="" width="40" height="44"/>
+        <span class="product-points__text"><?= $escaper->escapeHtml(__('Earn %1 points', number_format($points))) ?></span>
+    </div>
+
+    <div class="product-payments__card">
+        <p class="product-payments__text">
+            <?= $escaper->escapeHtml(__('As low as')) ?> <strong><?= $escaper->escapeHtml($monthly) ?>/<?= $escaper->escapeHtml(__('month')) ?></strong>
+            <?= $escaper->escapeHtml(__('or %1 interest-free payments.', $payments)) ?>
+            <a class="product-payments__link" href="<?= $escaper->escapeUrl($block->getUrl('easy-payment-options')) ?>"><?= $escaper->escapeHtml(__('Learn more')) ?></a>
+        </p>
+        <span class="product-payments__badge product-payments__badge--split"><?= $escaper->escapeHtml(__('Pay in %1', $payments)) ?></span>
+    </div>
+
+    <div class="product-payments__card">
+        <p class="product-payments__text">
+            <?= $escaper->escapeHtml(__('From')) ?> <strong><?= $escaper->escapeHtml($monthly) ?></strong>/<?= $escaper->escapeHtml(__('month for up to %1 months, no late fees!', $months)) ?>
+            <a class="product-payments__link product-payments__link--plain" href="<?= $escaper->escapeUrl($block->getUrl('easy-payment-options')) ?>"><?= $escaper->escapeHtml(__('More options')) ?></a>
+        </p>
+        <span class="product-payments__badge product-payments__badge--monthly"><?= $escaper->escapeHtml(__('Monthly')) ?></span>
+    </div>
+</div>
