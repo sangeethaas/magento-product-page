@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Concrete, single-purpose class with no interface: the only seam for a guest-aware message. -->
+    <preference for="Magento\Quote\Model\Quote\Validator\MinimumOrderAmount\ValidationMessage"
+                type="Customisations\MinOrderAmount\Model\GuestAwareValidationMessage"/>
+
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="customisations_min_order_amount_guest_minimum"
+                type="Customisations\MinOrderAmount\Plugin\Quote\GuestMinimumAmountPlugin"/>
+    </type>
+
+    <!-- Every quantity change (add to cart, cart update, REST) passes through Item::setQty(). -->
+    <type name="Magento\Quote\Model\Quote\Item">
+        <plugin name="customisations_min_order_amount_guest_quantity_limit"
+                type="Customisations\MinOrderAmount\Plugin\Quote\Item\GuestQuantityLimitPlugin"/>
+    </type>
+
+    <!-- Rates are collected here for the storefront, REST and GraphQL; core only accepts a method that has a rate. -->
+    <type name="Magento\Shipping\Model\Shipping">
+        <plugin name="customisations_min_order_amount_guest_shipping_restriction"
+                type="Customisations\MinOrderAmount\Plugin\Shipping\GuestShippingRestrictionPlugin"/>
+    </type>
+</config>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sales">
+            <group id="minimum_order">
+                <field id="guest_amount" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="1">
+                    <label>Minimum Order Amount (Guest)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>Only applies when Minimum Order Amount is enabled.</comment>
+                </field>
+            </group>
+        </section>
+        <section id="cataloginventory">
+            <group id="item_options">
+                <field id="guest_max_sale_qty" translate="label comment" type="text" sortOrder="4" showInDefault="1">
+                    <label>Maximum Qty Allowed in Shopping Cart (Guest)</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+            </group>
+        </section>
+        <section id="shipping">
+            <group id="guest_restrictions" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1">
+                <label>Guest Shipping Restrictions</label>
+                <field id="hidden_methods" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Shipping Methods Hidden From Guests</label>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allmethods</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <comment>Selected methods are not offered to customers who are not logged in, and cannot be used to place their order. Logged-in customers see all methods. Make sure at least one other method stays available for guests.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
